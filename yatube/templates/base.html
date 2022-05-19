@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 {% load static %}
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,14 +19,14 @@
     </title>
 </head>
 <body>
-  <header class="border-top text-center py-3">
+    <header class="border-top text-center py-3">
     {% include 'includes/header.html' %}
-  </header>
-  <main>
-    {% block content %}{% endblock %}
-  </main>
-  <footer class="border-top text-center py-3">
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
     {% include 'includes/footer.html' %}
-  </footer>
+        </footer>
 </body>
 </html>

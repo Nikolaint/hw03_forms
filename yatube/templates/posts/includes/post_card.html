@@ -1,0 +1,40 @@
+<article>
+    <ul>
+        <li>
+            {% with request.resolver_match.view_name as view_name %}
+            {% if view_name  != 'posts:profile' %}
+            Автор: <a href="{% url 'posts:profile' post.author %}">
+            {{ post.author.get_full_name}}</a>
+            {% else %}
+            Автор: {{ post.author.get_full_name}}
+            {% endif %}
+            {% endwith %}
+        <li>
+            Дата публикации: {{post.pub_date|date:"j E Y"}}
+        </li>
+    </ul>
+    <p>
+        {{ post.text|linebreaksbr }}
+    </p>
+
+    <ul>
+        <li>
+            <a href="{% url 'posts:post_detail' post.pk %}">
+                Подробная информация </a>
+        </li>
+        {% if post.group %}
+        {% with request.resolver_match.view_name as view_name %}
+        {% if view_name  != 'posts:group_posts' %}
+        <li>
+            Группа:<a href="{% url 'posts:group_posts' post.group.slug %}">
+            {{ post.group }}</a>
+        </li>
+        {% endif %}
+        {% endwith %}
+        {% endif %}
+    </ul>
+
+    {% if not forloop.last %}
+    <hr>
+    {% endif %}
+</article>
