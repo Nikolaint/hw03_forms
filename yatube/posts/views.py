@@ -26,8 +26,8 @@ def profile(request, username):
     author = get_object_or_404(User, username=username)
     context = {
         'author': author,
-        'page_obj': get_page(request, author.posts.all().select_related('group'))
-    }
+        'page_obj': get_page(request,
+         author.posts.all().select_related('group'))}
     return render(request, 'posts/profile.html', context)
 
 
