@@ -24,11 +24,11 @@ def group_posts(request, slug):
 
 def profile(request, username):
     author = get_object_or_404(User, username=username)
-    Posts = author.posts.all().select_related('group')
     context = {
         'author': author,
-        'page_obj': get_page(request, Posts)
-        }
+        'page_obj': get_page(request, 
+        author.posts.all().select_related('group'))
+    }
     return render(request, 'posts/profile.html', context)
 
 
