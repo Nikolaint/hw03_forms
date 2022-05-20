@@ -17,7 +17,8 @@ def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     context = {
         'group': group,
-        'page_obj': get_page(request, Post.objects.filter(group=group).select_related('group'))
+        'page_obj': get_page(request, Post.objects.
+            filter(group=group).select_related('author'))
     }
     return render(request, 'posts/group_list.html', context)
 
