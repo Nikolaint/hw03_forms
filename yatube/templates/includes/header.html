@@ -20,16 +20,14 @@
                 active{% endif %}"
                    href="{% url 'about:tech' %}">Технологии</a>
             </li>
-            {% endwith %}
             {% if user.is_authenticated %}
-            {% with request.resolver_match.view_name as view_name %}
             <li class="nav-item">
                 <a class="nav-link
                 {% if view_name  == 'posts:post_create' %}active
                 {% endif %}"
                    href="{% url 'posts:post_create' %}">Новая запись</a>
             </li>
-            {% endwith %}
+            
             <li class="nav-item">
                 <a class="nav-link link-light"
                    href="{% url 'users:password_change_form' %}">Изменить
@@ -54,6 +52,7 @@
                    href="{% url 'users:signup' %}">Регистрация</a>
             </li>
             {% endif %}
+            {% endwith %}
         </ul>
     </div>
 </nav>

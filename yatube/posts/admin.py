@@ -1,4 +1,4 @@
-from .models import Post, Group
+from .models import Group, Post
 
 from django.contrib import admin
 

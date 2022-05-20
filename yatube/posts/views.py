@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import PostForm
-from .models import Post, Group
+from .models import Group, Post
 from .utils import get_page
 
 
 def index(request):
-    post_list = Post.objects.select_related('group')
+    post_list = Post.objects.select_related('author')
     context = {'page_obj': get_page(request, post_list)}
     return render(request, 'posts/index.html', context)
 
@@ -17,7 +17,7 @@ def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     context = {
         'group': group,
-        'page_obj': get_page(request, Post.objects.select_related('group'))
+        'page_obj': get_page(request, Post.objects.filter(group=group).select_related('group'))
     }
     return render(request, 'posts/group_list.html', context)
 
