@@ -8,27 +8,27 @@ from .utils import get_page
 
 
 def index(request):
-    post_list = Post.objects.select_related('author')
+    post_list = Post.objects.select_related('author', 'group')
     context = {'page_obj': get_page(request, post_list)}
     return render(request, 'posts/index.html', context)
 
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    Posts = Post.objects.filter(group=group).select_related('author')
+    posts = Post.objects.filter(group=group).select_related('author', 'group')
     context = {
         'group': group,
-        'page_obj': get_page(request, Posts)
+        'page_obj': get_page(request, posts)
     }
     return render(request, 'posts/group_list.html', context)
 
 
 def profile(request, username):
     author = get_object_or_404(User, username=username)
-    Posts = author.posts.all().select_related('group')
+    posts = author.posts.all().select_related('author', 'group')
     context = {
         'author': author,
-        'page_obj': get_page(request, Posts)
+        'page_obj': get_page(request, posts)
     }
     return render(request, 'posts/profile.html', context)
 

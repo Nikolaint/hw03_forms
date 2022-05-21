@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body">
                     <form method="post">{% csrf_token %}
-                        {% include 'users/check_signup.html' %}
+                        {% include 'includes/for_field_in_form.html' %}
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
                                 Зарегистрироваться

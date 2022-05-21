@@ -16,13 +16,13 @@
                         {% if form.instance.pk %} Редактировать пост
                         {% else %} Создать новый пост {% endif %}
                     </div>
-                    {% include 'users/forms_error.html' %}
+                    {% include 'includes/forms_error.html' %}
                     <div class="card-body">
                         <form method="post" action="{% if form.instance.pk %}
                         {% url 'posts:post_edit' form.instance.pk %}
     {% else %}{% url 'posts:post_create' %}{% endif %}">
                             {% csrf_token %}
-                            {% include 'users/for_field_in_form.html' %}
+                            {% include 'includes/for_field_in_form.html' %}
                             <div class="d-flex justify-content-end">
                                 <button type="submit"
                                         class="btn btn-primary">
